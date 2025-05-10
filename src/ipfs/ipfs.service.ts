@@ -15,10 +15,10 @@ export class IpfsService {
   }
 
   async uploadImage(file: Express.Multer.File) {
-    const fileName = uuidv4().toString() + '.png';
+    const fileName = uuidv4().toString();
     const fileBuffer = file.buffer;
     const readyFile = new File([fileBuffer], fileName, {
-      type: 'image/png',
+      type: 'image/*',
     });
 
     try {
@@ -33,7 +33,7 @@ export class IpfsService {
   async uploadJson(json: any) {
     const jsonString = JSON.stringify(json);
     const jsonBuffer = Buffer.from(jsonString, 'utf-8');
-    const fileName = uuidv4().toString() + '.json';
+    const fileName = uuidv4().toString();
     const readyFile = new File([jsonBuffer], fileName, {
       type: 'application/json',
     });
